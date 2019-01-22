@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 'use strict';
-const url = chrome.runtime.getURL('data.json');
 
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
@@ -20,9 +19,10 @@ chrome.omnibox.onInputChanged.addListener(
 // This event is fired with the user accepts the input in the omnibox.
 chrome.omnibox.onInputEntered.addListener(
   function(text, current) {
-    fetch(url)
-    .then((response) => response.json()) //assuming file contains json
-    .then((json) => navigate(json[text]));
+    chrome.storage.local.get([text], function(result) {
+      console.log('Value currently is ' + JSON.stringify(result[text], null, 4));
+      navigate(result[text]);
+    });
   }
 );
 

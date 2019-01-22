@@ -4,19 +4,9 @@
     </head>
     <body>
         <h3>Add New GO link</h3>
-        <form onsubmit=" return addLink(this)" name="linkForm">
-            <input type="url" name="url" id="" placeholder="https://portal.uprm.edu/" required>
-            <input type="text" name="key-word" placeholder="portal" required>
-            <input type="submit" value="submit">
-        </form>
-        <script>
-            function addLink(data) {
-                var url = data['url'].value;
-                var key = data['key-word'].value;
-                var message = "url: " + url + " key: " + key;
-                alert(message);
-                return false;
-            }
-        </script>
+        <input type="url" name="url" id="long-url" placeholder="https://portal.uprm.edu/" required>
+        <input type="text" name="key-word" id="keyword" placeholder="portal" required>
+        <button id="submit" type="button">Submit</button>
+        <script src="popup.js"></script>
     </body>
 </html>
