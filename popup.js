@@ -11,6 +11,10 @@ function addLink() {
         keyInpt.value = "";
         console.log(key + ': ' + url);
     });
+    var publicLink = true;
+    if (publicLink) {
+        firebase.database().ref("go-links/public").update({[key]:url});
+    }
     
 }
 
