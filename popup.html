@@ -1,12 +1,22 @@
 <html>
     <head>
       <title>GO UPRM</title>
+      <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
     </head>
     <body>
-        <h3>Add New GO link</h3>
-        <input type="url" name="url" id="long-url" placeholder="https://portal.uprm.edu/" required>
-        <input type="text" name="key-word" id="keyword" placeholder="portal" required>
-        <button id="submit" type="button">Submit</button>
+        <div id="add-link">
+            <h3>Add New GO link</h3>
+            <input type="url" name="url" id="long-url" placeholder="https://portal.uprm.edu/" required>
+            <input type="text" name="key-word" id="keyword" placeholder="portal" required>
+            <input type="checkbox" name="public" value="Public">
+            <button id="submit" type="button">Submit</button>
+        </div>
+        <div id="email-signin">
+            <input type="email" name="email" id="email" placeholder="name.lastname@upr.edu" required>
+            <input type="password" name="password" id="password" placeholder="password" required>
+            <button id="send-link" type="button">Sign in</button>
+        </div>
         <script src="popup.js"></script>
+        <script src="credentials.js"></script>
     </body>
 </html>
