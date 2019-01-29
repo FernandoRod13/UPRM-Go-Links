@@ -3,7 +3,7 @@
     "version": "1.0",
     "omnibox": { "keyword" : "go" },
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["background.js", "credentials.js"],
         "persistent": false
     },
     "permissions": [

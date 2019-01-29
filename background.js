@@ -4,6 +4,16 @@
 
 'use strict';
 
+var config = {
+  apiKey: "AIzaSyC31Q3P2_jyBiyuxLVx6zKcJqC7Mme-IJQ",
+  authDomain: "go-uprm.firebaseapp.com",
+  databaseURL: "https://go-uprm.firebaseio.com",
+  projectId: "go-uprm",
+  storageBucket: "go-uprm.appspot.com",
+  messagingSenderId: "612040504909"
+};
+firebase.initializeApp(config);
+
 // This event is fired each time the user updates the text in the omnibox,
 // as long as the extension's keyword mode is still active.
 chrome.omnibox.onInputChanged.addListener(
@@ -20,8 +30,16 @@ chrome.omnibox.onInputChanged.addListener(
 chrome.omnibox.onInputEntered.addListener(
   function(text, current) {
     chrome.storage.local.get([text], function(result) {
-      console.log('Value currently is ' + JSON.stringify(result[text], null, 4));
-      navigate(result[text]);
+      if (result[text] != null) {
+        navigate(result[text]);
+      } else {
+        return firebase.database().ref("go-links/public/"+text).once('value').then(function(snapshot) {
+          if (snapshot.val() != null) {
+            navigate(snapshot.val());
+            chrome.storage.local.set({[text]: snapshot.val()});
+          }
+        });
+      }
     });
   }
 );
